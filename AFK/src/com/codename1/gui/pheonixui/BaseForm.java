@@ -27,6 +27,7 @@ import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import com.codename1.gui.pheonixui.AccueilRecette;
 
 /**
  * Utility methods common to forms e.g. for binding the side menu
@@ -64,7 +65,7 @@ public class BaseForm extends Form {
         getToolbar().addCommandToSideMenu("BabySittings", null, e -> {});
         getToolbar().addCommandToSideMenu("Medecins", trendingImage, e -> new TrendingForm(res).show());
         getToolbar().addCommandToSideMenu("Evenements", null, e -> {});
-		getToolbar().addCommandToSideMenu("Recettes", null, e -> {});
+	getToolbar().addCommandToSideMenu("Recettes", null, e -> new AccueilRecette(res).show());
         
         // spacer
         getToolbar().addComponentToSideMenu(new Label(" ", "SideCommand"));
