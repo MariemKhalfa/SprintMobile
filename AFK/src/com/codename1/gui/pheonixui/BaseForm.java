@@ -42,6 +42,9 @@ public class BaseForm extends Form {
 
         Image trendingImage = null;
         if(isCurrentTrending()) trendingImage = selection;
+		
+		Image babImage = null;
+        if(isCurrentTrending()) babImage = selection;
         
         Image calendarImage = null;
         if(isCurrentCalendar()) calendarImage = selection;
@@ -61,7 +64,7 @@ public class BaseForm extends Form {
         
         getToolbar().addCommandToSideMenu("Garderies", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Covoiturages", calendarImage, e -> new CalendarForm(res).show());
-        getToolbar().addCommandToSideMenu("BabySittings", null, e -> {});
+        getToolbar().addCommandToSideMenu("Babysittings", babImage, e -> new AjoutBabysitting().show());
         getToolbar().addCommandToSideMenu("Medecins", trendingImage, e -> new TrendingForm(res).show());
         getToolbar().addCommandToSideMenu("Evenements", null, e -> {});
 		getToolbar().addCommandToSideMenu("Recettes", null, e -> {});

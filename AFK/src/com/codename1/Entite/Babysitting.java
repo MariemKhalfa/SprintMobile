@@ -17,8 +17,8 @@ public class Babysitting  {
 	private int id;
 	private String titre;
 	private Date date;
-//	private Time heureDeb;
-//	private Time heureFin;
+	private String heureDeb;
+	private String heureFin;
 	private String adresse;
 	private int nbrEnfants;
 	private String description;
@@ -27,6 +27,30 @@ public class Babysitting  {
 	
 
 	public Babysitting() {
+	}
+
+	public Babysitting(Date date, String heureDeb, String heureFin, String adresse, int nbrEnfants) {
+		this.date = date;
+		this.heureDeb = heureDeb;
+		this.heureFin = heureFin;
+		this.adresse = adresse;
+		this.nbrEnfants = nbrEnfants;
+	}
+
+	public String getHeureDeb() {
+		return heureDeb;
+	}
+
+	public void setHeureDeb(String heureDeb) {
+		this.heureDeb = heureDeb;
+	}
+
+	public String getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(String heureFin) {
+		this.heureFin = heureFin;
 	}
 
 //	public Babysitting(String titre, Date date, Time heureDeb, Time heureFin, String adresse, int nbrEnfants, String description) {
