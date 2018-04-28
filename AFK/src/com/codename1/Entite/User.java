@@ -42,6 +42,16 @@ public class User {
 	public int nbre_enfants;
 	private static User currentUser;
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
+    }
+        
+        
+
 	public User() {
 	}
 
@@ -267,13 +277,8 @@ public class User {
 		this.nbre_enfants = nbre_enfants;
 	}
 
-	public static User getCurrentUser() {
-		return currentUser;
-	}
-
-	public static void setCurrentUser(User currentUser) {
-		User.currentUser = currentUser;
-	}
+  
+	
 
 	@Override
 	public String toString() {

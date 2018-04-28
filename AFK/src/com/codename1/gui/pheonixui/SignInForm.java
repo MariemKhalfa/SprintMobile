@@ -18,6 +18,11 @@
  */
 package com.codename1.gui.pheonixui;
 
+import com.codename1.Entite.User;
+import com.codename1.Service.UtilisateurService;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.NetworkManager;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
 
 /**
@@ -27,6 +32,8 @@ import com.codename1.ui.FontImage;
  */
 public class SignInForm extends com.codename1.ui.Form {
 
+    private ConnectionRequest connectionRequest;
+	private String url;
     public SignInForm() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
     }
@@ -119,10 +126,31 @@ public class SignInForm extends com.codename1.ui.Form {
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
     public void onButton_2ActionEvent(com.codename1.ui.events.ActionEvent ev) {
-      if(gui_Text_Field_1.getText().equals("admin") && gui_Text_Field_2.getText().equals("admin"))
-	  {
-		  StatsForm s=new StatsForm(com.codename1.ui.util.Resources.getGlobalResources());
-		  s.show();
-	  }}
+     url="http://localhost/API2/web/app_dev.php/loginMobile";
 
-}
+		connectionRequest=new ConnectionRequest();
+			connectionRequest.setPost(false);
+			connectionRequest.addArgument("username",gui_Text_Field_1.getText());
+			connectionRequest.addArgument("password",gui_Text_Field_2.getText());
+			connectionRequest.setUrl(url);
+			connectionRequest.addResponseListener(a->{
+				String resultat=new String(connectionRequest.getResponseData());
+				User user=new UtilisateurService().login(resultat);
+				
+				if(user.getId()!=-1){
+				                               
+					User.setCurrentUser(user);
+                                        System.out.println(User.getCurrentUser().getId());
+					System.out.println("wkwlkl");
+                                         StatsForm s=new StatsForm(com.codename1.ui.util.Resources.getGlobalResources());
+                                                                s.show();
+				}
+				else{
+					Dialog.show("Failed", "Login failed , please verify your informations .", "Ok",null);
+				}
+			});
+ 			NetworkManager.getInstance().addToQueueAndWait(connectionRequest);
+        };
+	  }
+
+

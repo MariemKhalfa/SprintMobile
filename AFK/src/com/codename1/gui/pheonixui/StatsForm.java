@@ -19,6 +19,7 @@
 package com.codename1.gui.pheonixui;
 
 //import com.codename1.progress.ArcProgress;
+import com.codename1.Entite.User;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -48,11 +49,12 @@ import java.util.Date;
  * @author Shai Almog
  */
 public class StatsForm extends BaseForm {
+    int current1=User.getCurrentUser().getId();
     public StatsForm(Resources res) {
         setLayout(new BorderLayout());
         setUIID("StatsForm");
         installSidemenu(res);
-        
+        System.out.println(current1);
         getToolbar().addCommandToRightBar("", res.getImage("toolbar-profile-pic.png"), e -> {});
         
         Button toggle = new Button("");
