@@ -34,7 +34,7 @@ public class AccueilRecette extends BaseForm {
         this(com.codename1.ui.util.Resources.getGlobalResources());
     }
     
-    public AccueilRecette(com.codename1.ui.util.Resources resourceObjectInstance) {
+    public AccueilRecette   (com.codename1.ui.util.Resources resourceObjectInstance) {
         initGuiBuilderComponents(resourceObjectInstance);
         gui_separator1.setShowEvenIfBlank(true);
         gui_Label_1_1_1.setShowEvenIfBlank(true);

@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author Sofien
  */
-public class ServiceUser {
+public class ServiceEnseignant {
     
     
         public ArrayList<User> getEnseignant() {
