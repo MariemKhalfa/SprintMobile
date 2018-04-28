@@ -1,5 +1,6 @@
 package com.esprit.myapp;
 
+import com.codename1.gui.pheonixui.AccueilRecette;
 import static com.codename1.ui.CN.*;
 import com.codename1.io.Log;
 import com.codename1.ui.Button;
@@ -46,8 +47,9 @@ public class MyApplication {
             return;
         }
         Form hi = new Form("Welcome", new BorderLayout(BorderLayout.CENTER_BEHAVIOR_CENTER_ABSOLUTE));
-        SignInForm h = new SignInForm();
+     /*   SignInForm h = new SignInForm();*/
         
+     AccueilRecette h = new AccueilRecette();
         final Label apple = new Label(theme.getImage("apple-icon.png")); 
         final Label android = new Label(theme.getImage("android-icon.png")); 
         final Label windows = new Label(theme.getImage("windows-icon.png")); 

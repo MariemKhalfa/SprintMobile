@@ -44,7 +44,7 @@ import java.util.ArrayList;
  *
  * @author Arshavin
  */
-public final class ActiviteList {
+public final class ActiviteList extends  com.codename1.ui.Form{
 
     private Form form;
     private MultiButton mb;
@@ -291,5 +291,6 @@ public final class ActiviteList {
         s.setMargin(Component.BOTTOM, 3);
     }
 
+ 
  
 }

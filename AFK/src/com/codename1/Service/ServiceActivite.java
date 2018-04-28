@@ -5,6 +5,7 @@
  */
 package com.codename1.Service;
 
+
 import com.codename1.Entite.Activite;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;

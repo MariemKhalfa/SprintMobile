@@ -24,10 +24,9 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
-import com.codename1.gui.pheonixui.AccueilRecette;
+import java.io.IOException;
 
 /**
  * Utility methods common to forms e.g. for binding the side menu
@@ -53,6 +52,9 @@ public class BaseForm extends Form {
         Image statsImage = null;
         if(isCurrentStats()) statsImage = selection;
         
+         Image activiteImage = null;
+        if(isCurrentStats()) activiteImage = selection;
+        
         Button inboxButton = new Button("Mon Profil", inboxImage);
         inboxButton.setUIID("SideCommand");
         inboxButton.getAllStyles().setPaddingBottom(0);
@@ -63,6 +65,13 @@ public class BaseForm extends Form {
         inboxButton.addActionListener(e -> new InboxForm().show());
         getToolbar().addComponentToSideMenu(inbox);
         
+        
+        getToolbar().addCommandToSideMenu("Activités", activiteImage, e -> {
+            try {
+                new ActiviteList();
+            } catch (IOException ex) {
+            }
+        });
         getToolbar().addCommandToSideMenu("Garderies", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Covoiturages", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Babysittings", babImage, e -> new AjoutBabysitting().show());
