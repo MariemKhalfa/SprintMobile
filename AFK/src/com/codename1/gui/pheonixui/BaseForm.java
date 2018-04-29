@@ -55,6 +55,9 @@ public class BaseForm extends Form {
          Image activiteImage = null;
         if(isCurrentStats()) activiteImage = selection;
         
+           Image evenementImage = null;
+        if(isCurrentStats()) evenementImage = selection;
+        
         Button inboxButton = new Button("Mon Profil", inboxImage);
         inboxButton.setUIID("SideCommand");
         inboxButton.getAllStyles().setPaddingBottom(0);
@@ -72,11 +75,19 @@ public class BaseForm extends Form {
             } catch (IOException ex) {
             }
         });
+        
+         getToolbar().addCommandToSideMenu("Evenement", evenementImage, e -> {
+            try {
+                new EvenementsListe();
+            } catch (IOException ex) {
+            }
+        });
+        
+        
         getToolbar().addCommandToSideMenu("Garderies", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Covoiturages", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Babysittings", babImage, e -> new AjoutBabysitting().show());
         getToolbar().addCommandToSideMenu("Medecins", trendingImage, e -> new TrendingForm(res).show());
-        getToolbar().addCommandToSideMenu("Evenements", null, e -> {});
 	getToolbar().addCommandToSideMenu("Recettes", null, e -> new AccueilRecette(res).show());
         
         // spacer
