@@ -3,22 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Entite/User.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/WalkthruForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Service/UtilisateurService.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/PheonixUI.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Entite/DemandeInscription.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/SplashForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/InboxForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Service/ServiceEnseignant.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/StatsForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/BaseForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Service/ServiceRecette.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/SignInForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/AccueilRecette.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/Entite/Recette.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/TrendingForm.java</file>
-            <file>file:/C:/Users/pc/Documents/Esprit2/SprintMobile/AFK/src/com/codename1/gui/pheonixui/DetailsForm.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/sprites/MarioNormal.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/MyApplication.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/sprites/Mario.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/MarioGame.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/sprites/Coin.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/codename1/Service/ServiceActivite.java</file>
+            <file>file:/C:/wamp64/www/GitHub/SprintMobile/AFK/src/com/nlcode/cd1/mario/MarioSpriteFactory.java</file>
         </group>
     </open-files>
 </project-private>

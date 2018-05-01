@@ -11,10 +11,12 @@ import com.codename1.ui.Form;
 import com.codename1.Service.ServiceActivite;
 import com.codename1.components.InteractionDialog;
 import com.codename1.components.MultiButton;
+import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.AutoCompleteTextField;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
@@ -32,6 +34,7 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.list.DefaultListModel;
+import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.RoundBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
@@ -39,6 +42,7 @@ import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -49,6 +53,7 @@ public final class ActiviteList extends  com.codename1.ui.Form{
     private Form form;
     private MultiButton mb;
     private Container container;
+    ControleSaisie cs  = new ControleSaisie();
     protected final AutoCompleteTextField search;
     private Resources theme;
     private int id;
@@ -85,9 +90,11 @@ public final class ActiviteList extends  com.codename1.ui.Form{
                 }
 
                 options.removeAll();
+                int i1 =0;
                 for (Activite s : l) {
                     options.addItem(s.getType());
-                    ids.add(s.getId());
+                    ids.add(i1);
+                    i1++;
                 }
 
                 return true;
@@ -96,16 +103,19 @@ public final class ActiviteList extends  com.codename1.ui.Form{
         };
 
         search.setHint("Nom activité", FontImage.createMaterial(FontImage.MATERIAL_SEARCH, style));
-        search.addListListener((ActionListener) (ActionEvent evt) -> {
+    search.addListListener((ActionListener) (ActionEvent evt) -> {
             System.out.println(search.getText());
-            int i = ids.get(options.getSelectedIndex());
-
+                        int i = ids.get(options.getSelectedIndex());
+            for (Activite e : activite) {
+                String type = e.getType();
+                String sType= options.getItemAt(i);
+                if(type.equals(sType))
+            f.add(createContainer(e));
+            id = e.getId();
+        }
             f.show();
         });
-        
         form.add(search);
-
-
         search.setMinimumElementsShownInPopup(4);
         f.getToolbar().addCommandToRightBar("", FontImage.createMaterial(FontImage.MATERIAL_BACKSPACE, style), e -> {
             form.show();
@@ -120,9 +130,9 @@ public final class ActiviteList extends  com.codename1.ui.Form{
         form.getToolbar().addCommandToLeftBar("", FontImage.createMaterial(FontImage.MATERIAL_ADD, style), (ActionEvent e) -> {
             InteractionDialog dlg = new InteractionDialog("");
             dlg.setLayout(new BorderLayout(BorderLayout.CENTER_BEHAVIOR_CENTER));
-            Button ok = new Button("OK");
+            Button ok = new Button("Valider");
 
-            Button cancel = new Button("Cancel");
+            Button cancel = new Button("Retour");
 
             Label typeLabel = new Label("Type", "Container");
             typeLabel.getAllStyles().setAlignment(Component.CENTER);
@@ -146,16 +156,42 @@ public final class ActiviteList extends  com.codename1.ui.Form{
             TextField type = new TextField("", "Type", 20, TextArea.ANY);
             TextField age_min = new TextField("", "Age minimal", 20, TextArea.ANY);
             TextField description = new TextField("", "Description", 20, TextArea.ANY);
-            TextField heure = new TextField("", "Heure", 20, TextArea.ANY);
+            TextField heure = new TextField("", "hh:mm", 20, TextArea.ANY);
             TextField adresse = new TextField("", "Adresse", 20, TextArea.ANY);
 
-            
+           
             Picker Date = new Picker();
             Date.setType(Display.PICKER_TYPE_DATE);
             TextField nbTable = new TextField("", "Number of table", 20, TextArea.ANY);
-            System.out.println("DAaaaaaaaaaaaaaaaaaaaaate " + Date.getDate());
             ok.addActionListener((evt) -> {
-                es.addActivite(new Activite(id + 1,
+        if (!cs.isString(adresse.getText())  ) {
+
+                    showDialog("L'adresse doit être une chaine de caractères");
+                }
+              else if (!cs.isString(type.getText())  ) {
+
+                    showDialog("Le type doit être une chaine de caractères");
+                }
+              else if (!cs.isString(description.getText())  ) {
+
+                    showDialog("La description doit être une chaine de caractères");
+                }
+                else if (!cs.isNumberAge(age_min.getText())) {
+
+                    showDialog("L'age minimal doit etre compris entre 1 et 18");
+                }
+                
+                  else if (!cs.isHeure(heure.getText())) {
+
+                    showDialog("Veuillez ecrire une heure valide");
+                }
+                 else if (!cs.isValidDate(Date.getDate())) {
+
+                    showDialog("Date incorrecte");
+                }
+                else 
+                {                         
+                         es.addActivite(new Activite(id + 1,
                         type.getText(),
                         Integer.parseInt(age_min.getText()),
                         Date.getDate(),
@@ -163,11 +199,10 @@ public final class ActiviteList extends  com.codename1.ui.Form{
                         description.getText(),
                      adresse.getText()
                          
-                        
-                      
-                        )
+                   )
                 );
-
+                dlg.dispose();
+                }
             });
 
             setDesign(type.getAllStyles());
@@ -204,28 +239,29 @@ public final class ActiviteList extends  com.codename1.ui.Form{
             dlg.show(0, 0, 0, 0);
         });
         form.show();
-    }
+        }
 
     public Container createContainer(Activite e) {
+         final Form f = new Form("Activité");
 
-        Label delete = new Label(FontImage.createMaterial(FontImage.MATERIAL_REMOVE_CIRCLE_OUTLINE, style));
-
-        delete.addPointerPressedListener((evt) -> {
-            try {
-                new ActiviteList();
-            } catch (IOException ex) {
-            }
+      
+           f.getToolbar().addCommandToRightBar("", FontImage.createMaterial(FontImage.MATERIAL_BACKSPACE, style), g -> {
+            form.show();
+            f.removeAll();
         });
+         
+        
+      
+            Label activite = new Label("", "Container");
 
-        Label activites = new Label(FontImage.createMaterial(FontImage.MATERIAL_GROUP_ADD, style));
-        activites.getAllStyles().setAlignment(Component.RIGHT);
+
 
         Label type = new Label("Type de l'activité : " + e.getType(), "Container");
         type.getAllStyles().setAlignment(Component.LEFT);
         Label description = new Label("Description: " + e.getDescription(), "Container");
         description.getAllStyles().setAlignment(Component.W_RESIZE_CURSOR);
 
-        String date = e.getDate().toString();
+        String date =  new SimpleDateFormat("dd-mm-yyyy").format( e.getDate());
         Label Date = new Label("Aura lieu le = " + date, "Container");
         Date.getAllStyles().setAlignment(Component.LEFT);
 
@@ -238,7 +274,7 @@ public final class ActiviteList extends  com.codename1.ui.Form{
      
         
            Label adresse = new Label("L'adresse est: " + e.getAdresse() ,  "Container");
-        heure.getAllStyles().setAlignment(Component.LEFT);
+        adresse.getAllStyles().setAlignment(Component.LEFT);
         
         
         
@@ -250,7 +286,7 @@ public final class ActiviteList extends  com.codename1.ui.Form{
                 heure,
                 
                 
-                GridLayout.encloseIn(2, delete, activites));
+                GridLayout.encloseIn(2, activite ));
         Style boxStyle = box.getUnselectedStyle();
         boxStyle.setBgTransparency(255);
         boxStyle.setBgColor(0xeeeeee);
@@ -291,6 +327,39 @@ public final class ActiviteList extends  com.codename1.ui.Form{
         s.setMargin(Component.BOTTOM, 3);
     }
 
- 
+ 	public void showDialog(String msg) {
+
+        Dialog dlg = new Dialog("");
+        Style dlgStyle = dlg.getDialogStyle();
+        dlgStyle.setBorder(Border.createEmpty());
+        dlgStyle.setBgTransparency(255);
+        dlgStyle.setBgColor(0xffffff);
+
+        dlg.setLayout(BoxLayout.y());
+        Label blueLabel = new Label();
+        blueLabel.setShowEvenIfBlank(true);
+        blueLabel.getUnselectedStyle().setBgColor(0xff);
+        blueLabel.getUnselectedStyle().setPadding(1, 1, 1, 1);
+        blueLabel.getUnselectedStyle().setPaddingUnit(Style.UNIT_TYPE_PIXELS);
+        dlg.add(blueLabel);
+        TextArea ta = new TextArea(msg);
+        ta.setEditable(false);
+        ta.setUIID("DialogBody");
+        ta.getAllStyles().setFgColor(0);
+        dlg.add(ta);
+
+        Label grayLabel = new Label();
+        grayLabel.setShowEvenIfBlank(true);
+        grayLabel.getUnselectedStyle().setBgColor(0xcccccc);
+        grayLabel.getUnselectedStyle().setPadding(1, 1, 1, 1);
+        grayLabel.getUnselectedStyle().setPaddingUnit(Style.UNIT_TYPE_PIXELS);
+        dlg.add(grayLabel);
+
+        Button ok = new Button(new Command("OK"));
+        
+        dlg.add(ok);
+        dlg.showDialog();
+
+    }
  
 }

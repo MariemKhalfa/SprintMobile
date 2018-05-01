@@ -54,16 +54,14 @@ public class BaseForm extends Form {
         
          Image activiteImage = null;
         if(isCurrentStats()) activiteImage = selection;
-        
-<<<<<<< Updated upstream
+
            Image evenementImage = null;
         if(isCurrentStats()) evenementImage = selection;
-=======
+
              Image statImage = null;
         if(isCurrentStats()) statImage = selection;
         
-        
->>>>>>> Stashed changes
+
         
         Button inboxButton = new Button("Mon Profil", inboxImage);
         inboxButton.setUIID("SideCommand");
@@ -82,21 +80,17 @@ public class BaseForm extends Form {
             } catch (IOException ex) {
             }
         });
-        
-<<<<<<< Updated upstream
-         getToolbar().addCommandToSideMenu("Evenement", evenementImage, e -> {
+                 getToolbar().addCommandToSideMenu("Evenement", evenementImage, e -> {
             try {
                 new EvenementsListe();
             } catch (IOException ex) {
             }
         });
         
-        
-=======
-   
+
         
         getToolbar().addCommandToSideMenu("Statistique", statImage, e -> new Statistic().createPieChartForm().show());
->>>>>>> Stashed changes
+
         getToolbar().addCommandToSideMenu("Garderies", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Covoiturages", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Babysittings", babImage, e -> new AjoutBabysitting().show());
