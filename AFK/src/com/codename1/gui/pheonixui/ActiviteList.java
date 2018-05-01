@@ -262,7 +262,7 @@ public final class ActiviteList extends  com.codename1.ui.Form{
         description.getAllStyles().setAlignment(Component.W_RESIZE_CURSOR);
 
         String date =  new SimpleDateFormat("dd-mm-yyyy").format( e.getDate());
-        Label Date = new Label("Aura lieu le = " + date, "Container");
+        Label Date = new Label("Aura lieu le : " + date, "Container");
         Date.getAllStyles().setAlignment(Component.LEFT);
 
         Label age_min = new Label("L'Age minimal est: " + e.getAge_min() ,  "Container");
