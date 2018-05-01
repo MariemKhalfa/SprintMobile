@@ -55,8 +55,15 @@ public class BaseForm extends Form {
          Image activiteImage = null;
         if(isCurrentStats()) activiteImage = selection;
         
+<<<<<<< Updated upstream
            Image evenementImage = null;
         if(isCurrentStats()) evenementImage = selection;
+=======
+             Image statImage = null;
+        if(isCurrentStats()) statImage = selection;
+        
+        
+>>>>>>> Stashed changes
         
         Button inboxButton = new Button("Mon Profil", inboxImage);
         inboxButton.setUIID("SideCommand");
@@ -76,6 +83,7 @@ public class BaseForm extends Form {
             }
         });
         
+<<<<<<< Updated upstream
          getToolbar().addCommandToSideMenu("Evenement", evenementImage, e -> {
             try {
                 new EvenementsListe();
@@ -84,11 +92,17 @@ public class BaseForm extends Form {
         });
         
         
+=======
+   
+        
+        getToolbar().addCommandToSideMenu("Statistique", statImage, e -> new Statistic().createPieChartForm().show());
+>>>>>>> Stashed changes
         getToolbar().addCommandToSideMenu("Garderies", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Covoiturages", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Babysittings", babImage, e -> new AjoutBabysitting().show());
         getToolbar().addCommandToSideMenu("Medecins", trendingImage, e -> new TrendingForm(res).show());
 	getToolbar().addCommandToSideMenu("Recettes", null, e -> new AccueilRecette(res).show());
+	getToolbar().addCommandToSideMenu("Jeux", null, e -> new Game());
         
         // spacer
         getToolbar().addComponentToSideMenu(new Label(" ", "SideCommand"));
